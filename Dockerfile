@@ -56,7 +56,6 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     caddy \
 
-RUN pip install cryptography --no-warn-script-location
 RUN pip install -U --no-cache-dir pip
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
