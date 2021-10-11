@@ -49,12 +49,15 @@ RUN apt-get update \
     debian-keyring \
     debian-archive-keyring \
     apt-transport-https \
+    rustc \
     && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add - \
     && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
     caddy \
-    && pip install -U --no-cache-dir pip
+
+RUN pip install cryptography --no-warn-script-location
+RUN pip install -U --no-cache-dir pip
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
 ENV POETRY_VERSION=1.1.6
